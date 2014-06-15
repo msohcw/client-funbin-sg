@@ -9,21 +9,68 @@ body {
   overflow-x:hidden;
 }
 
-#nav{
-	width: 100%;
-	height: 4em;
+h1,h2,h3,h4,h5,h6 {
+  padding: 0;
+  margin: 0;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
+#nav{
+  position: fixed;
+	width: 70%;
+	height: 4em;
+  z-index: 10;
+  margin-left: -35%;
+  left: 50%;
+  transition: left 1s ease;
+}
+/*
+#home-btn{
+  background: url("../img/home.png") center center / contain no-repeat;
+}
+
+#challenge-btn{
+  background: url("../img/the_challenge.png") center center / contain no-repeat;
+}
+
+#how-to-enter-btn{
+  background: url("../img/how_to_enter.png") center center / contain no-repeat;
+}
+
+#contact-btn{
+  background: url("../img/contact_us.png") center center / contain no-repeat;
+}
+
+#sponsors-btn{
+  background: url("../img/sponsors.png") center center / contain no-repeat;
+}*/
+
 .nav-btn{
-	float: left;
+  width: 20%;
+  vertical-align: middle;
+  text-align: center;
+  /*height: 100%;*/
+  /*float: left;*/
+  /*opacity: 1;*/
+  /*background-size: contain;*/
+}
+
+.nav-btn img{
+  min-height: 3.5em;
+  max-height: 4em;
 }
 
 #first{
 	position: absolute;
 	top: 0;
 	width:400%;
-	height: 150%;
+	height: 100%;
 	margin-left: -100%;
+  transition: margin-left 1s ease;
+  -webkit-transition: margin-left 1s ease;
 }
 
 .frame{
@@ -40,8 +87,12 @@ body {
 }
 
 #header{
-  background-color: green;
-  background-image: url("img/pattern_white.png");
+  background-color: #85d235;
+  background-image: url("../img/pattern_white.png");
+}
+
+.emphasis { 
+  font-family:"MuseoSansRounded-1000" 
 }
 
 #bin-top, #title, #bin-bottom{
@@ -55,6 +106,7 @@ body {
   height:5.5em;
   margin-top: -12.077em;
   margin-top: calc(17.5 * -0.5em + 77 / 91 * 5.5 * -0.5em);
+  margin-bottom: 0.2em;
 }
 
 #title {
@@ -65,7 +117,51 @@ body {
   height: 10em;
   border: 0.25em solid white;
   color:white;
-  
+  text-align: center;
+  padding: 0.5em 0 0 0;
+  box-shadow: 0 2px #7abf30, inset 0 2px #7abf30;
+}
+
+#title-1, #title-2, #title-3{
+  padding: 0;
+  text-shadow: 0 3px #7abf30;
+}
+
+#title-1 {
+  font-size: 2.7em;
+  font-family:"MuseoSans-700" 
+}
+
+#title-2 {
+  font-size: 2.7em;
+  font-family: "MuseoSansRounded-1000";
+  -webkit-animation: shine 3s infinite;
+}
+
+#title-stroke{
+  position: absolute;
+  width: 20em;
+  right: 2em;
+  top: 6.1em;
+  opacity: 0.9;
+}
+
+@-webkit-keyframes shine{
+  0%{
+    text-shadow: 0 3px #7abf30, 0 -10px 60px rgba(255,255,255,0.6);
+  }
+  50%{
+    text-shadow: 0 3px #7abf30, 0 -10px 60px rgba(255,255,255,0.3);
+  }
+  100%{
+    text-shadow: 0 3px #7abf30, 0 -10px 60px rgba(255,255,255,0.6);
+  }
+}
+
+#title-3{
+  font-size: 2em;
+  font-family: "MuseoSansRounded-700";
+  margin-top: 0.2em;
 }
 
 #bin-bottom{
@@ -90,6 +186,55 @@ body {
   top:50%;
   color:white;
 }
+
+#background-btn{
+  position: absolute;
+  width: 12em;
+  height: 8.5em;
+  /*margin-left: 30em;*/
+  /*top:74%;*/
+  left:24%;
+  /*top: calc(50% + 4.5em);*/
+  left: calc(50% - 22em);
+  background-image: url("../img/background.png");
+  background-repeat: no-repeat;
+  -webkit-animation: cloud-float 3s -1s infinite;
+}
+
+#faq-btn{
+  position: absolute;
+  width: 12em;
+  height: 8.5em;
+  /*margin-left: 30em;*/
+  top:74%;
+  right:24%;
+  top: calc(50% + 4.5em);
+  right: calc(50% - 22em);
+  background: url("../img/faq.png") no-repeat;
+  /*background-repeat: no-repeat;*/
+  -webkit-animation: cloud-float 2.8s infinite;
+}
+
+#faq-btn:hover, #background-btn:hover{
+  -webkit-animation-play-state:paused;
+}
+
+@-webkit-keyframes cloud-float{
+  0%{
+    top:74%;
+    top: calc(50% + 4.5em);
+  }
+  50%{
+    top:73%;
+    top: calc(50% + 4.1em);
+  }
+  100%{
+    top:74%;
+    top: calc(50% + 4.5em);
+  }
+}
+
+
 
 .vertical-center{
   width:100%;

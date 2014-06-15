@@ -9,26 +9,48 @@
 		<script type = "text/javascript" src="js/index.js"></script>
 	</head>
 	<body>
-		<div id = "nav">
+		<table id = "nav">
+			<tr>
+				<td class = "nav-btn" id = "home-btn">
+					<img class = "clickable" src = "img/home.png"/>
+				</td>
+				<!-- <div class = "nav-btn" id = "news-btn">
+					<img src = "img/home.png"/>
+				</div> -->
+				<td class = "nav-btn" id = "challenge-btn">
+					<img class = "clickable" src = "img/the_challenge.png"/>
+				</td>
+				<td class = "nav-btn" id = "how-to-enter-btn">
+					<img class = "clickable" src = "img/how_to_enter.png"/>
+				</td>
+				<td class = "nav-btn" id = "contact-btn">
+					<img class = "clickable" src = "img/contact_us.png"/>
+				</td>
+				<td class = "nav-btn" id = "sponsors-btn">
+					<img class = "clickable" src = "img/partnersandsponsors.png"/>
+				</td>
+			</tr>
+		</table>
+		<!-- <div id = "nav">
 			<div class = "nav-btn" id = "home-btn">
-				HOME
-			</div>
-			<div class = "nav-btn" id = "news-btn">
-				NEWS & UPDATES
-			</div>
-			<div class = "nav-btn" id = "challenge-btn">
-				THE CHALLENGE
+				<img src = "img/home.png"/>
+			</div> -->
+			<!-- <div class = "nav-btn" id = "news-btn">
+				<img src = "img/home.png"/>
+			</div> -->
+			<!-- <div class = "nav-btn" id = "challenge-btn">
+				<img src = "img/the_challenge.png"/>
 			</div>
 			<div class = "nav-btn" id = "how-to-enter-btn">
-				HOW TO ENTER
+				<img src = "img/how_to_enter.png"/>
 			</div>
 			<div class = "nav-btn" id = "contact-btn">
-				CONTACT US
+				<img src = "img/contact_us.png"/>
 			</div>
 			<div class = "nav-btn" id = "sponsors-btn">
-				SPONSORS
+				<img src = "img/sponsors.png"/>
 			</div>
-		</div>
+		</div> -->
 		<div id = "first">
 			<div class = "frame" id = "background">
 				<h1>From rubbish strewn streets,</h1>
@@ -38,13 +60,19 @@
 				<div class = "vertical-center"></div>
 				<img id = "bin-top" src = "img/bin_top.png"/>
 				<div id = "title">
-				  <h1>DESIGN A <span>FUN BIN</span></h1>
-				  <h2>subtitle goes here</h2>
+					<h1>
+						<span id = "title-1">DESIGN A </span>
+				   		<span id = "title-2" class = "emphasis">FUN BIN</span>
+				  	</h1>
+					<h2 id = "title-3" class = "subtitle">an initiative for all Singaporeans!</h2>
+					<img id = "title-stroke" src = "img/stroke.png" />
 				</div>
 				<div id = "bin-bottom">
-				  <img id = "bin-bottom-img" src = "img/bin_bottom.png"/>
+				  <img id = "bin-bottom-img" class = "clickable" src = "img/bin_bottom.png"/>
 			    <span id = "video-btn-text">Video</span>
 			  </div>
+			  <div id = "background-btn" class = "clickable"></div>
+			  <div id = "faq-btn" class = "clickable"></div> 
 			</div>
 			<div class = "frame" id = "faq">
 				<h1>Frequently Asked Questions</h1>
