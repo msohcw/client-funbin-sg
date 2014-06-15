@@ -22,6 +22,18 @@ $(document).ready(function(){
 		showFAQ();
 	})
 
+	$("#bin-bottom").hover(
+		function(){
+			$("#bin-bottom-img").attr("src","img/bin_bottom_hover.png")
+			$("#video-btn-text").css("text-shadow", "none")
+			$("#video-btn-text").css("margin-top", "calc(-1.8em + 2px)")
+		},
+		function(){
+			$("#bin-bottom-img").attr("src","img/bin_bottom.png")
+			$("#video-btn-text").css("text-shadow", "0 2px #ccc")
+			$("#video-btn-text").css("margin-top", "-1.8em")
+		}
+	);
 
 	$(document).keydown(function(e){
 		switch(e.keyCode){
