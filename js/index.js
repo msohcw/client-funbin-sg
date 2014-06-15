@@ -13,6 +13,10 @@ $(document).ready(function(){
 	$("#background-close-btn").click(function(){
 		showHeader();
 	})
+	
+	$("#faq-close-btn").click(function(){
+		showHeader();
+	})
 
 	$("#faq-btn").click(function(){
 		showFAQ();
@@ -79,18 +83,23 @@ function showHeader(){
 	firstPosition = 0;
 }
 
-function showBackground(){
-	$("#first").css("margin-left", "0");
+function hideHeader(){
 	$("#header").css("opacity", "0.5");
 	$("#nav").css("opacity", "0.5");
 	$("#header").css("z-index","-2");
 	$("#nav").css("z-index","-1");
+}
+
+function showBackground(){
+	$("#first").css("margin-left", "0");
 	$("#nav").css("left", "100%");
+	hideHeader();
 	firstPosition = -1;
 }
 
 function showFAQ(){
 	$("#first").css("margin-left", "-150%");
 	$("#nav").css("left", "-50%");
+	hideHeader();
 	firstPosition = 1;
 }
