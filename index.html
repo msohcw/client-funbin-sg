@@ -3,7 +3,8 @@
 	<head>
 		<title>Fun Bin Challenge</title>
 		<link rel = "stylesheet" type = "text/css" href = "css/index.css" />
-		<script type = "text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script type = "text/javascript" src="https://www.youtube.com/iframe_api"></script>
 		<script type = "text/javascript" src="js/plugins/jquery-disablescroll/jquery.disablescroll.js"></script>
 		<script type = "text/javascript" src="js/plugins/jquery-mousewheel/jquery.mousewheel.min.js"></script>
 		<script type = "text/javascript" src="js/index.js"></script>
@@ -64,9 +65,10 @@
 			  </div>
 			  <div id = "background-btn" class = "clickable"></div>
 			  <div id = "faq-btn" class = "clickable"></div> 
-			  <div id ="video-popup">
+			  <div id ="video-popup" class="frame">
 					<div class="vertical-center"></div>
-				  	<iframe width="854" height="510" src="//www.youtube.com/embed/cbEKAwCoCKw" frameborder="0" allowfullscreen></iframe>
+				  	<iframe id = "youtube-video" width="854" height="510" src="https://www.youtube.com/embed/cbEKAwCoCKw?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+				  	<div id = "video-popup-close-btn" class="close-btn clickable">CLOSE</div>
 			  </div>
 			</div>
 			<div class = "frame" id = "faq">

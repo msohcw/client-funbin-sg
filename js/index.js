@@ -1,52 +1,3 @@
-$(document).ready(function(){
-	$("#first").disablescroll({
-		onlyWebkitSafe: true,
-		disabledDirections: [0,0,1,1]
-	});
-	$("#first").mousewheel(function(e){
-		if(e.deltaX != 0) e.preventDefault();
-	});
-	$("#background-btn").click(function(){
-		showBackground();
-	})
-	
-	$("#background-close-btn").click(function(){
-		showHeader();
-	})
-	
-	$("#faq-close-btn").click(function(){
-		showHeader();
-	})
-
-	$("#faq-btn").click(function(){
-		showFAQ();
-	})
-
-	$("#bin-bottom").hover(
-		function(){
-			$("#bin-bottom-img").attr("src","img/bin_bottom_hover.png")
-			$("#video-btn-text").css("text-shadow", "none")
-			$("#video-btn-text").css("margin-top", "calc(-1.8em + 2px)")
-		},
-		function(){
-			$("#bin-bottom-img").attr("src","img/bin_bottom.png")
-			$("#video-btn-text").css("text-shadow", "0 2px #ccc")
-			$("#video-btn-text").css("margin-top", "-1.8em")
-		}
-	);
-
-	$(document).keydown(function(e){
-		switch(e.keyCode){
-			case 37:
-				left();
-				break;
-			case 39:
-				right();
-				break;
-		}
-	});
-});
-
 var firstPosition = 0;
 var framePosition = 0;
 
@@ -115,3 +66,67 @@ function showFAQ(){
 	hideHeader();
 	firstPosition = 1;
 }
+
+var youtubeVideo;
+
+function onYouTubeIframeAPIReady() {
+  youtubeVideo = new YT.Player('youtube-video');
+}
+
+$(document).ready(function(){
+	$("#first").disablescroll({
+		onlyWebkitSafe: true,
+		disabledDirections: [0,0,1,1]
+	});
+	$("#first").mousewheel(function(e){
+		if(e.deltaX != 0) e.preventDefault();
+	});
+	$("#background-btn").click(function(){
+		showBackground();
+	})
+	
+	$("#background-close-btn").click(function(){
+		showHeader();
+	})
+	
+	$("#faq-close-btn").click(function(){
+		showHeader();
+	})
+
+	$("#faq-btn").click(function(){
+		showFAQ();
+	})
+
+	$("#bin-bottom").hover(
+		function(){
+			$("#bin-bottom-img").attr("src","img/bin_bottom_hover.png")
+			$("#video-btn-text").css("text-shadow", "none")
+			$("#video-btn-text").css("margin-top", "calc(-1.8em + 2px)")
+		},
+		function(){
+			$("#bin-bottom-img").attr("src","img/bin_bottom.png")
+			$("#video-btn-text").css("text-shadow", "0 2px #ccc")
+			$("#video-btn-text").css("margin-top", "-1.8em")
+		}
+	);
+
+	$("#bin-bottom").click(function(){
+		$("#video-popup").fadeIn();
+	})
+
+	$("#video-popup-close-btn").click(function(){
+		$("#video-popup").fadeOut();
+		youtubeVideo.pauseVideo();
+	})
+
+	$(document).keydown(function(e){
+		switch(e.keyCode){
+			case 37:
+				left();
+				break;
+			case 39:
+				right();
+				break;
+		}
+	});
+});
