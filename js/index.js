@@ -72,6 +72,8 @@ function up() {
 function showHeader(){
 	$("#first").css("margin-left", "-50%");
 	$("#header").css("opacity", "1");
+	$("#header").css("z-index","0");
+	$("#nav").css("z-index","1");
 	$("#nav").css("opacity", "1");
 	$("#nav").css("left", "50%");
 	firstPosition = 0;
@@ -81,6 +83,8 @@ function showBackground(){
 	$("#first").css("margin-left", "0");
 	$("#header").css("opacity", "0.5");
 	$("#nav").css("opacity", "0.5");
+	$("#header").css("z-index","-2");
+	$("#nav").css("z-index","-1");
 	$("#nav").css("left", "100%");
 	firstPosition = -1;
 }

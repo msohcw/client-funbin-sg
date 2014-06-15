@@ -72,15 +72,12 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #header{
+  position: relative;
   background-color: #85d235;
   background-image: url("../img/pattern_white.png");
   opacity: 1;
   transition: opacity 1s ease;
   /*box-shadow: 0 0 2em #444;*/
-}
-
-.emphasis { 
-  font-family:"MuseoSansRounded-1000" 
 }
 
 #bin-top, #title, #bin-bottom{
@@ -167,11 +164,13 @@ h1,h2,h3,h4,h5,h6 {
   margin:auto;
   top:0;
   height:100%;
+  text-align: center;
 }
 
 #video-btn-text{
-  position:absolute;
-  top:50%;
+  position: relative;
+  margin-top:-20%;
+  font-size: 2em;
   color:white;
 }
 
@@ -222,9 +221,11 @@ h1,h2,h3,h4,h5,h6 {
   }
 }
 
-#background {
+#background, #faq{
+  position: relative;
   background: url("../img/pattern_blue.png");
   box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  z-index: 10;
   /*padding: 5%;*/
 }
 
@@ -277,4 +278,8 @@ h1,h2,h3,h4,h5,h6 {
 .vertical-center{
   width:100%;
   height:50%;
+}
+
+.emphasis { 
+  font-family:"MuseoSansRounded-1000" 
 }
