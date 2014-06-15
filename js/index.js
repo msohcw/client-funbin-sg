@@ -9,9 +9,16 @@ $(document).ready(function(){
 	$("#background-btn").click(function(){
 		showBackground();
 	})
+	
+	$("#background-close-btn").click(function(){
+		showHeader();
+	})
+
 	$("#faq-btn").click(function(){
 		showFAQ();
 	})
+
+
 	$(document).keydown(function(e){
 		switch(e.keyCode){
 			case 37:
@@ -63,19 +70,23 @@ function up() {
 }
 
 function showHeader(){
-	$("#first").css("margin-left", "-100%");
+	$("#first").css("margin-left", "-50%");
+	$("#header").css("opacity", "1");
+	$("#nav").css("opacity", "1");
 	$("#nav").css("left", "50%");
 	firstPosition = 0;
 }
 
 function showBackground(){
 	$("#first").css("margin-left", "0");
-	$("#nav").css("left", "150%");
+	$("#header").css("opacity", "0.5");
+	$("#nav").css("opacity", "0.5");
+	$("#nav").css("left", "100%");
 	firstPosition = -1;
 }
 
 function showFAQ(){
-	$("#first").css("margin-left", "-200%");
+	$("#first").css("margin-left", "-150%");
 	$("#nav").css("left", "-50%");
 	firstPosition = 1;
 }
