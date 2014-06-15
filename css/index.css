@@ -48,8 +48,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #first{
-  position: absolute;
-  top: 0;
+  position: relative;
   width:250%;
   height: 100%;
   margin-left: -50%;
@@ -61,13 +60,14 @@ h1,h2,h3,h4,h5,h6 {
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 2em;
+  padding: 6em 2em 2em 2em;
   box-sizing:border-box;
 }
 
 #background, #header, #faq{
   width: 40%;
   float: left;
+  padding-top:2em;
 }
 
 #background {
@@ -276,6 +276,7 @@ h1,h2,h3,h4,h5,h6 {
   top: 0;
   left: 0;
   background-color: rgba(0,0,0,0.5);
+  padding-top: 2em;
   z-index: 10;
 }
 
@@ -284,6 +285,50 @@ h1,h2,h3,h4,h5,h6 {
   margin: auto;
   margin-top: -255px;
   box-shadow: 0 0 1em rgba(0,0,0,0.5);
+}
+
+#challenge{
+  height: auto;
+  background: url("../img/pattern_blue.png");
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+#timeline{
+  height: auto;
+  clear: both;
+}
+
+#prizes {
+  height: auto;
+  background-color: #22a9b4;
+  background-image: url("../img/pattern_white.png");
+  padding-left: 4em;
+}
+
+#prizes-table{
+  font-family: "MuseoSansRounded-900";
+  font-size: 1.6em;
+  color: white;
+  width: 90%;
+  vertical-align: middle;
+}
+
+#prizes-table > tr{
+  width: 100%;
+}
+
+.category{
+  width: 22%;
+  text-align: left;
+}
+
+.individual-prize, .school-prize{
+  text-align: center;
+}
+
+.school-prize > img, .individual-prize > img {
+  max-width: 40%;
+  max-height: 40%;
 }
 
 .generic-content{
@@ -305,6 +350,7 @@ h1,h2,h3,h4,h5,h6 {
   text-shadow: 0 1px rgba(0,0,0,0.2); 
   color: #22a9b4;
   font-size: 1.1em;
+  line-height: 1.5em;
   max-height: 80%;
 }
 

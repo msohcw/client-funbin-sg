@@ -44,6 +44,7 @@ function showHeader(){
 	$("#nav").css("opacity", "1");
 	$("#nav").css("left", "50%");
 	firstPosition = 0;
+	$(".page").css("display","block")
 }
 
 function hideHeader(){
@@ -51,6 +52,7 @@ function hideHeader(){
 	$("#nav").css("opacity", "0.5");
 	$("#header").css("z-index","-2");
 	$("#nav").css("z-index","-1");
+	$(".page").css("display","none")
 }
 
 function showBackground(){
@@ -74,13 +76,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 $(document).ready(function(){
-	$("#first").disablescroll({
-		onlyWebkitSafe: true,
-		disabledDirections: [0,0,1,1]
-	});
-	$("#first").mousewheel(function(e){
-		if(e.deltaX != 0) e.preventDefault();
-	});
+	
 	$("#background-btn").click(function(){
 		showBackground();
 	})
@@ -118,6 +114,8 @@ $(document).ready(function(){
 		$("#video-popup").fadeOut();
 		youtubeVideo.pauseVideo();
 	})
+
+	disableHorizontalScrolling();
 
 	$(document).keydown(function(e){
 		switch(e.keyCode){
