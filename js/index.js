@@ -115,8 +115,6 @@ $(document).ready(function(){
 		youtubeVideo.pauseVideo();
 	})
 
-	disableHorizontalScrolling();
-
 	$(document).keydown(function(e){
 		switch(e.keyCode){
 			case 37:

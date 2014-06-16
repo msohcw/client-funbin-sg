@@ -299,27 +299,38 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #prizes {
-  height: auto;
   background-color: #22a9b4;
+  height: auto;
   background-image: url("../img/pattern_white.png");
   padding-left: 4em;
 }
 
 #prizes-table{
   font-family: "MuseoSansRounded-900";
-  font-size: 1.6em;
   color: white;
   width: 90%;
+  margin: auto;
+  text-shadow: 0 2px #209da8;
+  text-shadow: 0 2px rgba(0,0,0,0.2);
   vertical-align: middle;
+  table-layout: fixed;
 }
 
-#prizes-table > tr{
-  width: 100%;
+#prizes-table tr{
+  height: 20em;
+}
+
+#prizes-stroke{
+  position: absolute;
+  top: 31em;
+  left: 12%;
+  width: 76%;
 }
 
 .category{
   width: 22%;
   text-align: left;
+  font-size: 2em;
 }
 
 .individual-prize, .school-prize{
@@ -327,8 +338,18 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .school-prize > img, .individual-prize > img {
-  max-width: 40%;
+  /*max-width: 40%;*/
   max-height: 40%;
+}
+
+.prize-title{
+  font-size: 1.4em;
+  line-height: 1.8em;
+}
+
+.prize-subtitle{
+  font-family: "MuseoSans-700";
+  font-size: 1.2em;
 }
 
 .generic-content{
