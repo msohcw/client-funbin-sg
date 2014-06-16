@@ -25,7 +25,7 @@ h1,h2,h3,h4,h5,h6 {
   position: fixed;
   width: 70%;
   height: 4em;
-  z-index: 10;
+  z-index: 1000;
   margin-left: -35%;
   left: 50%;
   opacity: 1;
@@ -36,6 +36,7 @@ h1,h2,h3,h4,h5,h6 {
   width: 20%;
   vertical-align: middle;
   text-align: center;
+  transition: opacity 0.5s ease;
   /*height: 100%;*/
   /*float: left;*/
   /*opacity: 1;*/
@@ -244,10 +245,10 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .close-btn{
-  position: relative;
-  float: right;
-  margin-top:1em;
+  position: absolute;
+  bottom: 2em;
   padding: 0.4em 1em 0.4em 1em;
+  float: right;
   color: white;
   text-align: center;
   text-shadow: 0 1px #ddd;
@@ -260,13 +261,15 @@ h1,h2,h3,h4,h5,h6 {
   border-top: 2px solid #22a9b4;
 }
 
+#background-close-btn{
+  right: 2em;
+}
+
 #faq-close-btn{
-  position: absolute;
-  bottom: 2em;
   left: 2em;
 }
 
-#faq-close-btn:hover{
+#background-close-btn:hover,#faq-close-btn:hover{
   bottom: calc(2em + 2px);
 }
 
@@ -294,8 +297,63 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #timeline{
+  position: relative;
+  min-height: 100%;
   height: auto;
+  padding-bottom: 4em;
+  background-image: url("../img/pattern_green.png");
+}
+
+#timeline-title{
+  position: relative;
+  z-index: 10;
+  margin-left: 2em;
+}
+
+#timeline-background{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%);
+  z-index: 0;
+}
+
+.timeline-stage{
+  position: relative;
+  height: 12em;
+  margin-left: 15%;
+  margin-top: 4em;
+  /*margin-left: 8em;*/
+  z-index: 10;
   clear: both;
+}
+
+.stage-img{
+  position: relative;
+  display: block;
+  float: left;
+  height: 100%;
+}
+
+.stage-text{
+  height: 100%;
+  float: left;
+  margin-left: 4em;
+  font-family: "MuseoSansRounded-900";
+}
+
+.stage-title{
+  font-size: 4em;
+  text-shadow: 0 2px rgba(0,0,0,0.4);
+  margin-top: -0.9em;
+  color: #85d235;
+}
+
+.stage-subtitle{
+  font-size: 2.5em;
+  color: #22a9b4;
 }
 
 #prizes {
@@ -303,6 +361,11 @@ h1,h2,h3,h4,h5,h6 {
   height: auto;
   background-image: url("../img/pattern_white.png");
   padding-left: 4em;
+}
+
+#prizes-title{
+  width: 20%;
+  margin-bottom: -5em;
 }
 
 #prizes-table{
@@ -322,7 +385,7 @@ h1,h2,h3,h4,h5,h6 {
 
 #prizes-stroke{
   position: absolute;
-  top: 31em;
+  top: 28em;
   left: 12%;
   width: 76%;
 }
@@ -351,6 +414,88 @@ h1,h2,h3,h4,h5,h6 {
   font-family: "MuseoSans-700";
   font-size: 1.2em;
 }
+
+.top-prize{
+  color: #fdee17;
+}
+
+#judging{
+  position: relative;
+  min-height: 100%;
+  height: auto;
+  padding-bottom: 4em;
+  background-image: url("../img/pattern_green.png");
+}
+
+#judging-title{
+  position: relative;
+  z-index: 10;
+  margin-left: 2em;
+  margin-bottom: -4em;
+}
+
+#judging-background{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%);
+  z-index: 0;
+}
+
+.judging-criterion{
+  position: relative;
+  height: 12em;
+  margin-left: 15%;
+  margin-top: 4em;
+  /*margin-left: 8em;*/
+  z-index: 10;
+  clear: both;
+}
+
+.criterion-img{
+  position: relative;
+  display: block;
+  float: left;
+  height: 100%;
+}
+
+.criterion{
+  height: 100%;
+  float: left;
+  margin-left: 4em;
+  font-family: "MuseoSansRounded-900";
+}
+
+.criterion-title{
+  font-size: 4em;
+  margin-top: 0.5em;
+  text-shadow: 0 2px rgba(0,0,0,0.4);
+  color: #85d235;
+}
+
+.criterion-subtitle{
+  font-size: 2em;
+  color: #7abf30;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .generic-content{
   background-color: rgba(255,255,255,0.7);

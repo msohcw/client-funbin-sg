@@ -1,7 +1,11 @@
 var firstPosition = 0;
 var framePosition = 0;
+var navPagePosition = 0;
+var frameHeights = [0];
+var navPageHeights = []
+var navPageMidHeights = []
 
-function left(){
+function left(e){
 	switch (firstPosition){
 		case 0:
 			showBackground();
@@ -14,7 +18,7 @@ function left(){
 	}
 }
 
-function right(){
+function right(e){
 	switch (firstPosition){
 		case 0:
 			showFAQ();
@@ -27,13 +31,19 @@ function right(){
 	}
 }
 
-function down(){
-	
+function down(e){
+	e.preventDefault();
+	if(framePosition == frameHeights.length) return;
+	framePosition++;
+	$(document).scrollTo(frameHeights[framePosition], { "axis" : "y", "duration":500})
+	// console.log("hullo")
 }
 
-function up() {
-	if (framePosition == 0) return;
-	framePosition--
+function up(e) {
+	e.preventDefault();
+	if(framePosition == frameHeights.length) return;
+	framePosition--;
+	$(document).scrollTo(frameHeights[framePosition], { "axis" : "y", "duration":500})
 }
 
 function showHeader(){
@@ -76,7 +86,19 @@ function onYouTubeIframeAPIReady() {
 }
 
 $(document).ready(function(){
+	$(".page").each(function(i){
+		frameHeights.push($(this).offset().top);
+	});
+	$(".nav-page").each(function(i){
+		navPageHeights.push($(this).offset().top);
+	});
 	
+	for(var i = 0; i < navPageHeights.length-1; ++i){
+		navPageMidHeights[i] = (navPageHeights[i] + navPageHeights[i+1])/2;
+	}
+
+	navPageMidHeights[navPageHeights.length-1] = navPageHeights[navPageHeights.length-1];
+
 	$("#background-btn").click(function(){
 		showBackground();
 	})
@@ -116,13 +138,48 @@ $(document).ready(function(){
 	})
 
 	$(document).keydown(function(e){
+		// console.log(e.keyCode)
 		switch(e.keyCode){
+			case 38:
+				up(e);
+				break;
 			case 37:
-				left();
+				left(e);
+				break;
+			case 40:
+				down(e);
 				break;
 			case 39:
-				right();
+				right(e);
 				break;
 		}
 	});
+
+	$(document).scroll(function(){
+		var position = $(window).scrollTop();
+		// console.log(position)
+		for(var i = 0; i<frameHeights.length; ++i){
+			if(position <= frameHeights[i]){
+				if(framePosition != i){
+					framePosition = i;
+				}
+				break;
+			}
+
+		}
+		for(var i = 0; i<navPageHeights.length; ++i){
+			if(position <= navPageMidHeights[i]){
+				if(navPagePosition != i){
+					navPagePosition = i;
+					if(i == 0){
+						$(".nav-btn").css("opacity",1);
+					}else{
+						$(".nav-btn").eq(i).css("opacity",1);
+						$(".nav-btn").not(":eq("+i+")").css("opacity",0.5);
+					}
+				}
+				break;
+			}
+		}	
+	})
 });
