@@ -6,6 +6,7 @@ var navPageHeights = []
 var navPageMidHeights = []
 
 function left(e){
+	if($(window).scrollTop()!=0) return;
 	switch (firstPosition){
 		case 0:
 			showBackground();
@@ -19,6 +20,7 @@ function left(e){
 }
 
 function right(e){
+	if($(window).scrollTop()!=0) return;
 	switch (firstPosition){
 		case 0:
 			showFAQ();
@@ -33,17 +35,15 @@ function right(e){
 
 function down(e){
 	e.preventDefault();
-	if(framePosition == frameHeights.length) return;
-	framePosition++;
-	$(document).scrollTo(frameHeights[framePosition], { "axis" : "y", "duration":500})
+	if(framePosition == frameHeights.length - 1) return;
+	$(document).scrollTo(frameHeights[framePosition+1], { "axis" : "y", "duration":500, "onAfter":updatePosition})
 	// console.log("hullo")
 }
 
 function up(e) {
 	e.preventDefault();
-	if(framePosition == frameHeights.length) return;
-	framePosition--;
-	$(document).scrollTo(frameHeights[framePosition], { "axis" : "y", "duration":500})
+	if(framePosition == 0) return;
+	$(document).scrollTo(frameHeights[framePosition-1], { "axis" : "y", "duration":500, "onAfter":updatePosition})
 }
 
 function showHeader(){
@@ -83,6 +83,37 @@ var youtubeVideo;
 
 function onYouTubeIframeAPIReady() {
   youtubeVideo = new YT.Player('youtube-video');
+}
+
+function updatePosition(){
+	var position = $(window).scrollTop() + 1; //+1 account for rounding
+
+	for(var i = 1 ; l = frameHeights.length, i < l; ++i){
+		if(position == frameHeights[i]){
+			framePosition = i;
+			break;
+		}
+		if(position <= frameHeights[i]){
+			framePosition = i-1;
+			break;
+		}
+		framePosition = frameHeights.length-1;
+	}
+
+	for(var i = 0; i<navPageHeights.length; ++i){
+		if(position <= navPageHeights[i]){
+			if(navPagePosition != i){
+				navPagePosition = i;
+				if(i == 0){
+					$(".nav-btn").css("opacity",1);
+				}else{
+					$(".nav-btn").eq(i).css("opacity",1);
+					$(".nav-btn").not(":eq("+i+")").css("opacity",0.5);
+				}
+			}
+			break;
+		}
+	}	
 }
 
 $(document).ready(function(){
@@ -138,7 +169,7 @@ $(document).ready(function(){
 	})
 
 	$(document).keydown(function(e){
-		// console.log(e.keyCode)
+		console.log(e.keyCode)
 		switch(e.keyCode){
 			case 38:
 				up(e);
@@ -155,31 +186,21 @@ $(document).ready(function(){
 		}
 	});
 
-	$(document).scroll(function(){
-		var position = $(window).scrollTop();
-		// console.log(position)
-		for(var i = 0; i<frameHeights.length; ++i){
-			if(position <= frameHeights[i]){
-				if(framePosition != i){
-					framePosition = i;
-				}
-				break;
+	$(document).scroll(function(e){
+		updatePosition();		
+		$(".nav-btn img").hover(
+			function(){
+				$(this).parent().css("opacity",1)
 			}
+			,
+			function(){
+				if($(this).parent().index()!=navPagePosition && navPagePosition != 0) $(this).parent().css("opacity",0.5);
+			}
+		)
+	})
 
-		}
-		for(var i = 0; i<navPageHeights.length; ++i){
-			if(position <= navPageMidHeights[i]){
-				if(navPagePosition != i){
-					navPagePosition = i;
-					if(i == 0){
-						$(".nav-btn").css("opacity",1);
-					}else{
-						$(".nav-btn").eq(i).css("opacity",1);
-						$(".nav-btn").not(":eq("+i+")").css("opacity",0.5);
-					}
-				}
-				break;
-			}
-		}	
+	$("#first").mousewheel(function(e){
+		console.log(e.deltaX)
+		if(e.deltaX!=0) e.preventDefault();
 	})
 });
