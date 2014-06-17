@@ -101,19 +101,23 @@ function updatePosition(){
 	}
 
 	for(var i = 0; i<navPageHeights.length; ++i){
-		if(position <= navPageHeights[i]){
-			if(navPagePosition != i){
-				navPagePosition = i;
-				if(i == 0){
-					$(".nav-btn").css("opacity",1);
-				}else{
-					$(".nav-btn").eq(i).css("opacity",1);
-					$(".nav-btn").not(":eq("+i+")").css("opacity",0.5);
-				}
-			}
+		if(position == navPageHeights[i]){
+			navPagePosition = i;
 			break;
+		}else if(position <= navPageHeights[i]){
+			navPagePosition = i-1;
+			break;
+		}else{
+			navPagePosition = navPageHeights.length-1;
 		}
+		console.log (i + " " + (position <= navPageHeights[i]))
 	}	
+	if(navPagePosition == 0){
+		$(".nav-btn").css("opacity",1);
+	}else{
+		$(".nav-btn").eq(navPagePosition).css("opacity",1);
+		$(".nav-btn").not(":eq("+navPagePosition+")").css("opacity",0.5);
+	}
 }
 
 $(document).ready(function(){
@@ -167,6 +171,22 @@ $(document).ready(function(){
 		$("#video-popup").fadeOut();
 		youtubeVideo.pauseVideo();
 	})
+
+	$("#home-btn").click(function(){
+		$(document).scrollTo("#first",{ "axis" : "y", "duration":500, "onAfter":updatePosition});
+	});
+	$("#challenge-btn").click(function(){
+		$(document).scrollTo("#challenge",{ "axis" : "y", "duration":500, "onAfter":updatePosition});
+	});
+	$("#how-to-enter-btn").click(function(){
+		$(document).scrollTo("#howtoenter",{ "axis" : "y", "duration":500, "onAfter":updatePosition});
+	});
+	$("#contact-btn").click(function(){
+		$(document).scrollTo("#contactus",{ "axis" : "y", "duration":500, "onAfter":updatePosition});
+	});
+	$("#sponsors-btn").click(function(){
+		$(document).scrollTo("#sponsors",{ "axis" : "y", "duration":500, "onAfter":updatePosition});
+	});
 
 	$(document).keydown(function(e){
 		console.log(e.keyCode)
