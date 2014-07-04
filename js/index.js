@@ -9,13 +9,13 @@ function left(e){
 	if($(window).scrollTop()!=0) return;
 	switch (firstPosition){
 		case 0:
-			showBackground();
-			break;
+		showBackground();
+		break;
 		case 1:
-			showHeader();
-			break;
+		showHeader();
+		break;
 		case -1:
-			break;
+		break;
 	}
 }
 
@@ -23,18 +23,19 @@ function right(e){
 	if($(window).scrollTop()!=0) return;
 	switch (firstPosition){
 		case 0:
-			showFAQ();
-			break;
+		showFAQ();
+		break;
 		case 1:
-			break;
+		break;
 		case -1:
-			showHeader();
-			break;
+		showHeader();
+		break;
 	}
 }
 
 function down(e){
 	e.preventDefault();
+	updateFrameHeights();
 	if(framePosition == frameHeights.length - 1) return;
 	$(document).scrollTo(frameHeights[framePosition+1], { "axis" : "y", "duration":500, "onAfter":updatePosition})
 	// console.log("hullo")
@@ -42,6 +43,7 @@ function down(e){
 
 function up(e) {
 	e.preventDefault();
+	updateFrameHeights();
 	if(framePosition == 0) return;
 	$(document).scrollTo(frameHeights[framePosition-1], { "axis" : "y", "duration":500, "onAfter":updatePosition})
 }
@@ -82,7 +84,7 @@ function showFAQ(){
 var youtubeVideo;
 
 function onYouTubeIframeAPIReady() {
-  youtubeVideo = new YT.Player('youtube-video');
+	youtubeVideo = new YT.Player('youtube-video');
 }
 
 function updatePosition(){
@@ -110,8 +112,8 @@ function updatePosition(){
 		}else{
 			navPagePosition = navPageHeights.length-1;
 		}
-		console.log (i + " " + (position <= navPageHeights[i]))
-	}	
+		// console.log (i + " " + (position <= navPageHeights[i]))
+	}
 	if(navPagePosition == 0){
 		$(".nav-btn").css("opacity",1);
 	}else{
@@ -120,10 +122,21 @@ function updatePosition(){
 	}
 }
 
-$(document).ready(function(){
+function updateFrameHeights(){
+	frameHeights = [0];
 	$(".page").each(function(i){
 		frameHeights.push($(this).offset().top);
 	});
+}
+
+$(document).ready(function(){
+	var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	
+	updateFrameHeights();
+
 	$(".nav-page").each(function(i){
 		navPageHeights.push($(this).offset().top);
 	});
@@ -161,16 +174,39 @@ $(document).ready(function(){
 			$("#video-btn-text").css("text-shadow", "0 2px #ccc")
 			$("#video-btn-text").css("margin-top", "-1.8em")
 		}
-	);
+		);
 
 	$("#bin-bottom").click(function(){
 		$("#video-popup").fadeIn();
 	})
 
-	$("#video-popup-close-btn").click(function(){
-		$("#video-popup").fadeOut();
+	$("#video-popup").not("#youtube-video").click(function(){
 		youtubeVideo.pauseVideo();
+		$("#video-popup").fadeOut();
 	})
+  
+	$(".litter").click(function(e){
+		var target = e.target;
+		while($(target).hasClass("litter")!==true) target = $(e.target).parent();
+		var targetId = $(target)[0].id;
+		$("#litter-content-title").text(litterculpritsContent[targetId]["title"]);
+		$("#litter-content-para").html(litterculpritsContent[targetId]["para"]);
+		$("#litterculprits-content-container").removeClass(function(index, className){
+		    console.log((className.match(/\b[a-z]+-bg/g) || []).join(" "));
+		      return (className.match(/\b[a-z]+-bg/g) || []).join(" ");
+		})
+		$("#litterculprits-content-container").addClass(targetId + "-bg")
+
+		$("#litterculprits-container").fadeOut(400, function(){
+			$("#litterculprits-content-container").fadeIn();
+		});
+	})
+
+	$("#litter-close-btn").click(function(){
+		$("#litterculprits-content-container").fadeOut(400, function(){
+			$("#litterculprits-container").fadeIn();
+		});
+	});
 
 	$("#home-btn").click(function(){
 		$(document).scrollTo("#first",{ "axis" : "y", "duration":500, "onAfter":updatePosition});
@@ -188,26 +224,58 @@ $(document).ready(function(){
 		$(document).scrollTo("#sponsors",{ "axis" : "y", "duration":500, "onAfter":updatePosition});
 	});
 
+
+	$("#form-send-btn").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "https://mandrillapp.com/api/1.0/messages/send.json",
+			data: {
+				'key': 'ONm8rBhDdBhqJwHFZ4_Icw',
+				'message': {
+					'from_email':  $("#input-email").val(),
+					'to': [
+					{
+						'email': 'funbin.info@avelife.org',
+						'type': 'to'
+					}
+					],
+					'autotext': 'true',
+					'subject': $("#input-subject").val(),
+					'html': $("#input-message").val()
+				}
+			}
+		}).done(function(response) {
+   		if(response[0]["status"] === "sent"){
+   			$("#input-email").val("")
+   			$("#input-subject").val("")
+   			$("#input-message").val("")
+   			$("#form-notification").text("Success! Message sent.");
+   		}else{
+   			$("#form-notification").text("Oops. Please check your email.");
+   		}
+   	});
+	})
+
 	$(document).keydown(function(e){
-		console.log(e.keyCode)
+		// console.log(e.keyCode)
 		switch(e.keyCode){
 			case 38:
-				up(e);
-				break;
+			up(e);
+			break;
 			case 37:
-				left(e);
-				break;
+			left(e);
+			break;
 			case 40:
-				down(e);
-				break;
+			down(e);
+			break;
 			case 39:
-				right(e);
-				break;
+			right(e);
+			break;
 		}
 	});
 
 	$(document).scroll(function(e){
-		updatePosition();		
+		updatePosition();
 		$(".nav-btn img").hover(
 			function(){
 				$(this).parent().css("opacity",1)
@@ -216,11 +284,11 @@ $(document).ready(function(){
 			function(){
 				if($(this).parent().index()!=navPagePosition && navPagePosition != 0) $(this).parent().css("opacity",0.5);
 			}
-		)
+			)
 	})
 
 	$("#first").mousewheel(function(e){
-		console.log(e.deltaX)
+		// console.log(e.deltaX)
 		if(e.deltaX!=0) e.preventDefault();
 	})
 });
